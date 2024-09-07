@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>GG Radio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>GG Radio</h1>
+    
+    <input type="range" id='volume1' min="0" max="1" step="0.01" value="0.30" onchange="setVolume()">
+    
+    <div class="controls">
+        <button class="play-btn" id="play-pause-btn">Pause</button>
+    </div>
+
+    <audio id="audio-player" autoplay>
+        <source src="https://listen.gglvxd.eu.org/listen/frydefm/radio.aac" type="audio/aac">
+        Your browser does not support the audio element.
+    </audio>
+</div>
+
+<script>
+    function setVolume() {
+        document.getElementById('audio-player').volume = document.getElementById('volume1').value;
+    }
+
+    window.onload = setVolume;
+
+    var audioPlayer = document.getElementById('audio-player');
+    var playPauseBtn = document.getElementById('play-pause-btn');
+
+    playPauseBtn.onclick = function() {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            playPauseBtn.textContent = 'Pause';
+        } else {
+            audioPlayer.pause();
+            playPauseBtn.textContent = 'Play';
+        }
+    }
+</script>
+
+</body>
+</html>
