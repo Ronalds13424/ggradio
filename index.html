@@ -20,8 +20,19 @@
 
 <div class="container">
     <h1>GGRADIO</h1>
-    <iframe src="https://panel.deepradio.co.uk/public/ggradio/embed" frameborder="0" allowtransparency="true" style="width: 100%; min-height: 150px; border: 0;"></iframe>
+    <div id="radio-widget">
+        <img id="cover-art" src="" alt="Cover Art">
+        <div id="song-info">
+            <h2 id="song-title">Song Title</h2>
+            <h3 id="song-author">Song Author</h3>
+        </div>
+        <div id="controls">
+            <button id="play-pause">Play</button>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
+        </div>
+    </div>
 </div>
 
+<script src="script.js"></script>
 </body>
 </html>
