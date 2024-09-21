@@ -1,3 +1,7 @@
+const apiUrl = 'https://ihatecors.gglvxd.workers.dev/?q=https://radioapi.fryde.id.lv/api/ggradio';
+const audioPlayer = document.getElementById('audio-player');
+let isPlaying = false;
+
 async function fetchSongData() {
     try {
         const response = await fetch(apiUrl);
@@ -26,3 +30,27 @@ async function fetchSongData() {
         console.error('Error fetching song data:', error);
     }
 }
+
+// Play/Pause button logic
+document.getElementById('play-pause').addEventListener('click', () => {
+    if (isPlaying) {
+        audioPlayer.pause();
+        document.getElementById('play-pause').textContent = 'Play';
+    } else {
+        audioPlayer.pause(); // Stop the current stream
+        audioPlayer.load();  // Reload to start from live
+        audioPlayer.play();  // Play the live stream
+        document.getElementById('play-pause').textContent = 'Pause';
+    }
+    isPlaying = !isPlaying;
+});
+
+// Volume slider logic
+document.getElementById('volume-slider').addEventListener('input', (event) => {
+    const volume = event.target.value;
+    audioPlayer.volume = volume;
+});
+
+// Fetch song data every 10 seconds
+setInterval(fetchSongData, 10000);
+fetchSongData(); // Initial fetch
