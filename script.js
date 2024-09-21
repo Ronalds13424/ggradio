@@ -10,20 +10,21 @@ async function fetchSongData() {
         // Log the fetched data for debugging purposes
         console.log('Fetched song data:', data);
 
-        // Check if the image URL is valid and update the widget
         const coverArt = document.getElementById('cover-art');
         coverArt.src = data.image;
-        coverArt.onload = () => console.log('Cover art loaded successfully');
         coverArt.onerror = () => {
-            console.error('Failed to load cover art. Using placeholder image.');
-            coverArt.src = 'https://via.placeholder.com/300x300.png?text=No+Image'; // Placeholder image
+            coverArt.src = 'https://via.placeholder.com/300x300.png?text=No+Image';
         };
 
         document.getElementById('song-title').textContent = data.title;
         document.getElementById('song-author').textContent = data.author;
 
-        // Handle playback state if needed
-        // Add logic to play/pause audio here if integrated with a player
+        // Ensure audio plays instantly
+        if (!isPlaying) {
+            audioPlayer.play();
+            isPlaying = true;
+            document.getElementById('play-pause').textContent = 'Pause';
+        }
     } catch (error) {
         console.error('Error fetching song data:', error);
     }
@@ -35,7 +36,9 @@ document.getElementById('play-pause').addEventListener('click', () => {
         audioPlayer.pause();
         document.getElementById('play-pause').textContent = 'Play';
     } else {
-        audioPlayer.play();
+        audioPlayer.pause(); // Stop the current stream
+        audioPlayer.load();  // Reload to start from live
+        audioPlayer.play();  // Play the live stream
         document.getElementById('play-pause').textContent = 'Pause';
     }
     isPlaying = !isPlaying;
@@ -45,7 +48,6 @@ document.getElementById('play-pause').addEventListener('click', () => {
 document.getElementById('volume-slider').addEventListener('input', (event) => {
     const volume = event.target.value;
     audioPlayer.volume = volume;
-    console.log(`Volume set to: ${volume}`);
 });
 
 // Fetch song data every 10 seconds
