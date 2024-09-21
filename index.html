@@ -8,16 +8,10 @@
 </head>
 <body class="dark1">
 
-<nav class="navbar dark1">
-    <div class="logo">
-        <a href="index.html">GGRADIO</a>
-    </div>
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="./about.html">About Us</a></li>
-    </ul>
+<header class="header">
+    <h1>GGRADIO</h1>
     <div class="settings" id="settings-icon">⚙️</div>
-</nav>
+</header>
 
 <div class="theme-selector" id="theme-selector">
     <label for="themes">Choose a theme:</label>
@@ -29,17 +23,24 @@
     </select>
 </div>
 
-<div class="container dark1">
-    <h1>GGRADIO</h1>
-    <div id="radio-widget">
-        <h2 id="song-title">Song Title</h2>
-        <h3 id="song-author">Song Author</h3>
-        <div id="controls">
-            <button id="play-pause">Play</button>
-            <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
+<main class="container dark1">
+    <section id="radio-section">
+        <h2>Radio Player</h2>
+        <div id="radio-widget">
+            <h3 id="song-title">Song Title</h3>
+            <h4 id="song-author">Song Author</h4>
+            <div id="controls">
+                <button id="play-pause">Play</button>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
+            </div>
         </div>
-    </div>
-</div>
+    </section>
+
+    <section id="about-section">
+        <h2>About Us</h2>
+        <p>Welcome to GGRADIO, your go-to station for the best music and entertainment. Stay tuned for updates and enjoy our diverse selection of radio shows!</p>
+    </section>
+</main>
 
 <audio id="audio-player" src="https://stream.ggradio.pro/listen/ggradio/radio.mp3" preload="auto"></audio>
 
