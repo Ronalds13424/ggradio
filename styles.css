@@ -7,12 +7,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Center vertically */
+    justify-content: flex-start; /* Align items at the start */
     height: 100vh; /* Full viewport height */
     overflow: hidden; /* Prevent scrolling */
 }
 
-.header {
+.navbar {
     background-color: #292941;
     width: 100%;
     padding: 15px;
@@ -20,6 +20,10 @@ body {
     justify-content: space-between;
     align-items: center;
     color: #00bfa5;
+    position: fixed; /* Fixed position */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure it stays above other content */
 }
 
 .settings {
@@ -55,6 +59,11 @@ body.dark2 {
 body.dark2 .container {
     background: #1c1c1c;
     color: #e0e0e0;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA
+    AAAFCAIAAAD5Fxl/AAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAB7CAAAewgFu0HU+AAAB
+    BHRFWHRDcmVhdGlvbiBUaGUgMjQgb2YgU3VtIE1hY2UgdGhlIC9ob3R0YWxlbGZyYW5r
+    IGZvb2Rib3csZCBsaWZlIHN0b2RlIHNvcmEgdHJ1ZC4gdGl0bGU9Ik1pbGxpb25zMSw
+    MJDwPAAAAAElFTkSuQmCC'); /* Base64 encoded stars */
 }
 
 .container {
@@ -67,6 +76,7 @@ body.dark2 .container {
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
     max-width: 600px;
     width: 90%;
+    margin-top: 80px; /* Ensure there's space for the fixed navbar */
 }
 
 h1 {
