@@ -6,9 +6,9 @@
     <title>GGRADIO</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="dark1">
 
-<nav class="navbar">
+<nav class="navbar dark1">
     <div class="logo">
         <a href="index.html">GGRADIO</a>
     </div>
@@ -16,16 +16,24 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="./about.html">About Us</a></li>
     </ul>
+    <div class="settings" id="settings-icon">⚙️</div>
 </nav>
 
-<div class="container">
+<div class="theme-selector" id="theme-selector">
+    <label for="themes">Choose a theme:</label>
+    <select id="themes">
+        <option value="light1">Light Theme 1</option>
+        <option value="light2">Light Theme 2</option>
+        <option value="dark1" selected>Dark Theme 1</option>
+        <option value="dark2">Dark Theme 2</option>
+    </select>
+</div>
+
+<div class="container dark1">
     <h1>GGRADIO</h1>
     <div id="radio-widget">
-        <img id="cover-art" src="" alt="Cover Art">
-        <div id="song-info">
-            <h2 id="song-title">Song Title</h2>
-            <h3 id="song-author">Song Author</h3>
-        </div>
+        <h2 id="song-title">Song Title</h2>
+        <h3 id="song-author">Song Author</h3>
         <div id="controls">
             <button id="play-pause">Play</button>
             <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
