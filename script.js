@@ -7,48 +7,42 @@ async function fetchSongData() {
         const response = await fetch(apiUrl);
         const data = await response.json();
 
-        // Log the fetched data for debugging purposes
-        console.log('Fetched song data:', data);
-
-        const coverArt = document.getElementById('cover-art');
-        coverArt.src = data.image || 'https://via.placeholder.com/250x250?text=No+Image'; // Fallback image
-
-        coverArt.onerror = () => {
-            coverArt.src = 'https://via.placeholder.com/250x250?text=No+Image'; // Ensure a placeholder on error
-        };
-
-        document.getElementById('song-title').textContent = data.title;
-        document.getElementById('song-author').textContent = data.author;
-
-        // Ensure audio plays instantly
-        if (!isPlaying) {
-            audioPlayer.play();
-            isPlaying = true;
-            document.getElementById('play-pause').textContent = 'Pause';
-        }
+        document.getElementById('song-title').textContent = data.title || 'Unknown Title';
+        document.getElementById('song-author').textContent = data.author || 'Unknown Author';
     } catch (error) {
         console.error('Error fetching song data:', error);
     }
 }
 
-// Play/Pause button logic
 document.getElementById('play-pause').addEventListener('click', () => {
     if (isPlaying) {
         audioPlayer.pause();
         document.getElementById('play-pause').textContent = 'Play';
     } else {
-        audioPlayer.pause(); // Stop the current stream
-        audioPlayer.load();  // Reload to start from live
-        audioPlayer.play();  // Play the live stream
+        audioPlayer.play();
         document.getElementById('play-pause').textContent = 'Pause';
     }
     isPlaying = !isPlaying;
 });
 
-// Volume slider logic
 document.getElementById('volume-slider').addEventListener('input', (event) => {
-    const volume = event.target.value;
-    audioPlayer.volume = volume;
+    audioPlayer.volume = event.target.value;
+});
+
+// Theme switching logic
+const themeSelector = document.getElementById('themes');
+const settingsIcon = document.getElementById('settings-icon');
+const themeSelectorDiv = document.getElementById('theme-selector');
+
+settingsIcon.addEventListener('click', () => {
+    themeSelectorDiv.style.display = themeSelectorDiv.style.display === 'block' ? 'none' : 'block';
+});
+
+themeSelector.addEventListener('change', (event) => {
+    document.body.className = ''; // Reset classes
+    const selectedTheme = event.target.value;
+    document.body.classList.add(selectedTheme);
+    document.querySelector('.container').className = `container ${selectedTheme}`;
 });
 
 // Fetch song data every 10 seconds
